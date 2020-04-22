@@ -3,8 +3,12 @@ import CreateJs from "createjs-module";
 window.addEventListener("load", init);
 
 function init() {
-    // Stageオブジェクトを作成します
-    const stage = new CreateJs.Stage("myCanvas");
+    const leftCanvas = drawLeftCanvas();
+    drawRightCanvas(leftCanvas);
+}
+
+const drawLeftCanvas = () => {
+    const leftCanvas = new CreateJs.Stage("leftCanvas");
 
     const bottomLayer = new CreateJs.Container();
     bottomLayer.setTransform(0, 0);
@@ -12,11 +16,25 @@ function init() {
 
     const topLayer = new CreateJs.Container();
     topLayer.setTransform(0, 0);
-    topLayer.addChild(drawPentagon(), drawPentagonOutline(), drawLine(), drawText())
+    topLayer.addChild(drawPentagon(), drawPentagonOutline(), drawLine(), drawText());
 
-    stage.addChild(bottomLayer, topLayer);
-    stage.update();
+    leftCanvas.addChild(bottomLayer, topLayer);
+    leftCanvas.update();
+    return leftCanvas;
 }
+
+const drawRightCanvas = (leftCanvas) => {
+    const bottomLayer = leftCanvas.children[0];
+    const boundOfLeftRect = bottomLayer.children[1].getBounds();
+    const rightRect = new CreateJs.Shape();
+    rightRect.graphics.beginFill("black");
+    rightRect.graphics.drawRect(boundOfLeftRect.x, boundOfLeftRect.y, boundOfLeftRect.width, boundOfLeftRect.height);
+
+    const rightCanvas = new CreateJs.Stage("rightCanvas");
+    rightCanvas.addChild(rightRect);
+    rightCanvas.update();
+}
+
 
 const drawCircle = () => {
     const circle = new CreateJs.Shape();
@@ -30,6 +48,7 @@ const drawRect = () => {
     const rect = new CreateJs.Shape();
     rect.graphics.beginFill("#0000FF");
     rect.graphics.drawRect(0, 0, 100, 100);
+    rect.setBounds(0, 0, 100, 100);
     return rect
 }
 
