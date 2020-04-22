@@ -23,6 +23,8 @@ function init() {
 
     // テキストを追加します
     drawText(stage);
+
+    stage.update();
 }
 
 const drawCircle = (stage) => {
@@ -32,7 +34,6 @@ const drawCircle = (stage) => {
     circle.setTransform(200, 200, 2, 1.5, 45); // X 座標 200px , Y 座標 200px の位置に配置, scale は倍率を指定, skew は歪み, reg は registration
 
     stage.addChild(circle); // 表示リストに追加
-    stage.update();
 }
 
 const drawRect = (stage) => {
@@ -41,7 +42,6 @@ const drawRect = (stage) => {
     rect.graphics.drawRect(0, 0, 100, 100);
 
     stage.addChild(rect);
-    stage.update();
 }
 
 const drawPentagon = (stage) => {
@@ -55,7 +55,6 @@ const drawPentagon = (stage) => {
     pentagon.graphics.endFill();
 
     stage.addChild(pentagon);
-    stage.update();
 }
 
 const drawPentagonOutline = (stage) => {
@@ -70,7 +69,6 @@ const drawPentagonOutline = (stage) => {
                     .lineTo(400, 300);
 
     stage.addChild(outline);
-    stage.update();
 }
 
 const drawLine = (stage) => {
@@ -83,7 +81,6 @@ const drawLine = (stage) => {
     line.graphics.endStroke();
 
     stage.addChild(line);
-    stage.update();
 }
 
 const drawText = (stage) => {
@@ -91,5 +88,4 @@ const drawText = (stage) => {
     text.setTransform(250, 50, 5, 5, 90); // scale は倍率を指定
 
     stage.addChild(text);
-    stage.update();
 }
