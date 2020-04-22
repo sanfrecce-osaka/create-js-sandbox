@@ -7,13 +7,16 @@ function init() {
     const stage = new CreateJs.Stage("myCanvas");
 
     // 円を作成します
-    drawCircle(stage)
+    drawCircle(stage);
 
     // 四角形を作成します
-    drawRect(stage)
+    drawRect(stage);
 
     // 五角形を作成します
-    drawPentagon(stage)
+    drawPentagon(stage);
+
+    // 白抜きで五角形を作成します
+    drawPentagonOutline(stage);
 }
 
 const drawCircle = (stage) => {
@@ -46,5 +49,20 @@ const drawPentagon = (stage) => {
     pentagon.graphics.endFill();
 
     stage.addChild(pentagon);
+    stage.update();
+}
+
+const drawPentagonOutline = (stage) => {
+    const outline = new CreateJs.Shape();
+    outline.graphics.setStrokeStyle(5)
+    outline.graphics.beginStroke("red");
+    outline.graphics.moveTo(400, 300)
+                    .lineTo(500, 350)
+                    .lineTo(600, 450)
+                    .lineTo(400, 500)
+                    .lineTo(350, 350)
+                    .lineTo(400, 300);
+
+    stage.addChild(outline);
     stage.update();
 }
