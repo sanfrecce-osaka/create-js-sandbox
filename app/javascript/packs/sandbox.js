@@ -11,6 +11,9 @@ function init() {
 
     // 四角形を作成します
     drawRect(stage)
+
+    // 五角形を作成します
+    drawPentagon(stage)
 }
 
 const drawCircle = (stage) => {
@@ -18,10 +21,8 @@ const drawCircle = (stage) => {
     circle.graphics.beginFill("darkred"); // 赤色で描画するように設定
     circle.graphics.drawCircle(0, 0, 100); // 中心座標(x, y)から半径 100px の円を描画
     circle.setTransform(200, 200, 2, 1.5, 45); // X 座標 200px , Y 座標 200px の位置に配置, scale は倍率を指定, skew は歪み, reg は registration
-    stage.addChild(circle); // 表示リストに追加
-    console.log(stage.children);
 
-    // Stageの描画を更新します
+    stage.addChild(circle); // 表示リストに追加
     stage.update();
 }
 
@@ -31,7 +32,19 @@ const drawRect = (stage) => {
     rect.graphics.drawRect(0, 0, 100, 100);
 
     stage.addChild(rect);
-    console.log(stage.children);
+    stage.update();
+}
 
+const drawPentagon = (stage) => {
+    const pentagon = new CreateJs.Shape();
+    pentagon.graphics.beginFill("green")
+    pentagon.graphics.moveTo(100, 300)
+                     .lineTo(200, 350)
+                     .lineTo(300, 450)
+                     .lineTo(100, 500)
+                     .lineTo(50, 350);
+    pentagon.graphics.endFill();
+
+    stage.addChild(pentagon);
     stage.update();
 }
