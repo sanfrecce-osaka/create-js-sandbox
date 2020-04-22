@@ -20,6 +20,9 @@ function init() {
 
     // 線を作成します
     drawLine(stage);
+
+    // テキストを追加します
+    drawText(stage);
 }
 
 const drawCircle = (stage) => {
@@ -80,5 +83,13 @@ const drawLine = (stage) => {
     line.graphics.endStroke();
 
     stage.addChild(line);
+    stage.update();
+}
+
+const drawText = (stage) => {
+    const text = new CreateJs.Text("create js sandbox", "10px sans-serif", "orange");
+    text.setTransform(250, 50, 5, 5, 90); // scale は倍率を指定
+
+    stage.addChild(text);
     stage.update();
 }
