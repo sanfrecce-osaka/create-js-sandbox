@@ -17,6 +17,9 @@ function init() {
 
     // 白抜きで五角形を作成します
     drawPentagonOutline(stage);
+
+    // 線を作成します
+    drawLine(stage);
 }
 
 const drawCircle = (stage) => {
@@ -64,5 +67,18 @@ const drawPentagonOutline = (stage) => {
                     .lineTo(400, 300);
 
     stage.addChild(outline);
+    stage.update();
+}
+
+const drawLine = (stage) => {
+    const line = new CreateJs.Shape();
+    line.graphics.setStrokeStyle(5)
+    line.graphics.beginStroke("black");
+    line.graphics.moveTo(400, 50)
+                 .lineTo(400, 100)
+                 .lineTo(450, 100);
+    line.graphics.endStroke();
+
+    stage.addChild(line);
     stage.update();
 }
